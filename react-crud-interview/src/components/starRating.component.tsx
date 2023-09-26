@@ -1,8 +1,7 @@
-import exp from 'constants'
 import React, { useState } from 'react'
 import { Rating } from 'react-simple-star-rating'
 
-export function StarRating() {
+export function MyComponent() {
   const [rating, setRating] = useState(0)
 
   // Catch Rating value
@@ -28,4 +27,3 @@ export function StarRating() {
     </div>
   )
 }
-

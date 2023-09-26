@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Rating } from 'react-simple-star-rating'
+import axios from 'axios'
 
-export function MyComponent() {
+export function StarRating() {
   const [rating, setRating] = useState(0)
 
   // Catch Rating value

@@ -5,8 +5,8 @@ class StarRatingDataService {
     return http.get("/starRating");
   }
 
-  get(id) {
-    return http.get(`/starRating/${id}`);
+  get(starRating) {
+    return http.get(`/starRating/${starRating}`);
   }
 
   create(data) {

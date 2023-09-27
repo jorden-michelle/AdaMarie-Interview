@@ -1,29 +1,40 @@
 import React, { useState } from 'react'
 import { Rating } from 'react-simple-star-rating'
-import axios from 'axios'
+import StarRatingDataService from '../services/starRating.service';
 
-export function StarRating() {
-  const [rating, setRating] = useState(0)
+export function StarRatingComponent() {
+  const [, setRating] = useState<any | null>(null)
+  const [businessId, setBusinessId] = useState<any | null>(null)
+  const [, setSubmitted] = useState(false); 
 
   // Catch Rating value
   const handleRating = (rate: number) => {
     setRating(rate)
+    var data = {
+      starRating: rate,
+      businessId: businessId
+    };
 
-    // other logic
+    StarRatingDataService.create(data)
+      .then(response => {
+        setRating({
+          rating: response.data.starRating
+        });
+        setBusinessId({
+          businessId: response.data.businessId
+        })
+        setSubmitted(true);
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
   }
-  // Optinal callback functions
-  const onPointerEnter = () => console.log('Enter')
-  const onPointerLeave = () => console.log('Leave')
-  const onPointerMove = (value: number, index: number) => console.log(value, index)
 
   return (
     <div className='App'>
       <Rating
         onClick={handleRating}
-        onPointerEnter={onPointerEnter}
-        onPointerLeave={onPointerLeave}
-        onPointerMove={onPointerMove}
-        /* Available Props */
       />
     </div>
   )
